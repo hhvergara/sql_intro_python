@@ -14,13 +14,17 @@ __author__ = "Inove Coding School"
 __email__ = "alumnos@inove.com.ar"
 __version__ = "1.1"
 
+import os
 import sqlite3
 
 # https://extendsclass.com/sqlite-browser.html
 
+direccion = (os.path.dirname(os.path.abspath(__file__)))
+database_path = (direccion + '\databases')
+
 
 def create_schema():
-    conn = sqlite3.connect('personas_nacionalidad.db')
+    conn = sqlite3.connect('{}\personas_nacionalidad.db'.format(database_path))
     c = conn.cursor()
     c.execute("""
                 DROP TABLE IF EXISTS persona;
@@ -47,7 +51,7 @@ def create_schema():
 
 
 def insert_nacionalidad(nat_id, name):
-    conn = sqlite3.connect('personas_nacionalidad.db')
+    conn = sqlite3.connect('{}\personas_nacionalidad.db'.format(database_path))
     c = conn.cursor()
 
     values = (nat_id, name)
@@ -60,7 +64,7 @@ def insert_nacionalidad(nat_id, name):
 
 
 def insert_persona(name, age, nationality):
-    conn = sqlite3.connect('personas_nacionalidad.db')
+    conn = sqlite3.connect('{}\personas_nacionalidad.db'.format(database_path))
     c = conn.cursor()
 
     values = (name, age, nationality)

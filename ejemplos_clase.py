@@ -14,9 +14,14 @@ __author__ = "Inove Coding School"
 __email__ = "alumnos@inove.com.ar"
 __version__ = "1.1"
 
+import os
 import sqlite3
 
 # https://extendsclass.com/sqlite-browser.html
+
+
+direccion = (os.path.dirname(os.path.abspath(__file__)))
+database_path = (direccion + '\databases')
 
 
 def create_schema():
@@ -24,7 +29,7 @@ def create_schema():
     # Conectarnos a la base de datos
     # En caso de que no exista el archivo se genera
     # como una base de datos vacia
-    conn = sqlite3.connect('personas.db')
+    conn = sqlite3.connect('{}\personas.db'.format(database_path))
 
     # Crear el cursor para poder ejecutar las querys
     c = conn.cursor()
@@ -53,7 +58,7 @@ def create_schema():
 
 
 def insert_persona(name, age, nationality=""):
-    conn = sqlite3.connect('personas.db')
+    conn = sqlite3.connect('{}\personas.db'.format(database_path))
     c = conn.cursor()
 
     values = [name, age, nationality]
@@ -68,7 +73,7 @@ def insert_persona(name, age, nationality=""):
 
 
 def insert_grupo(group):
-    conn = sqlite3.connect('personas.db')
+    conn = sqlite3.connect('{}\personas.db'.format(database_path))
     c = conn.cursor()
 
     c.executemany("""
@@ -82,7 +87,7 @@ def insert_grupo(group):
 
 def show():
     # Conectarse a la base de datos
-    conn = sqlite3.connect('personas.db')
+    conn = sqlite3.connect('{}\personas.db'.format(database_path))
     c = conn.cursor()
 
     # Leer todas las filas y obtener todos los datos juntos
@@ -109,7 +114,7 @@ def show():
 
 def update_persona_age(name, age):
     # Conectarse a la base de datos
-    conn = sqlite3.connect('personas.db')
+    conn = sqlite3.connect('{}\personas.db'.format(database_path))
     c = conn.cursor()
 
     rowcount = c.execute("UPDATE persona SET age =? WHERE name =?",
@@ -125,7 +130,7 @@ def update_persona_age(name, age):
 
 def delete_persona(name):
     # Conectarse a la base de datos
-    conn = sqlite3.connect('personas.db')
+    conn = sqlite3.connect('{}\personas.db'.format(database_path))
     c = conn.cursor()
 
     # Borrar la fila cuyo nombre coincida con la búsqueda
