@@ -43,6 +43,7 @@ def create_schema():
                 [nationality] TEXT
             );
             """)
+            
 
     # Para salvar los cambios realizados en la DB debemos
     # ejecutar el commit, NO olvidarse de este paso!
