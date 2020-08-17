@@ -76,7 +76,10 @@ def fill_db():
     while True:
         lista = ['nombre', 'edad', 'grado', 'tutor']
         datos = [input(print('Ingrese', columna)) for columna in lista]  # funciona pero imprime None
-        
+        # Inovetip: no hace falta el print dentro del input!
+        # Probá con:
+        # datos = [input('Ingrese '+ columna + " --> ") for columna in lista]
+
         # agregar la lista datos a la tabla estudiantes
         c.execute("""
                 INSERT INTO estudiante (name, age, grade, tutor) 
@@ -128,7 +131,7 @@ def search_by_grade(grade):
 
     for row in c.execute("SELECT id, name, age FROM estudiante WHERE grade=?",(grade,)):
         print(row)
-    
+    # Inovetip: Fijate si puede devolver un mensaje si no encuentra coincidencias.
     conn.commit()
     conn.close()
 
@@ -174,7 +177,7 @@ if __name__ == '__main__':
     fetch()
     
     grade = 3
-    # search_by_grade(grade)
+    # search_by_grade(grade) 
 
     new_student = ['You', 16]
     # insert(new_student)
@@ -182,3 +185,5 @@ if __name__ == '__main__':
     name = '¿Inove?'
     id = 2
     # modify(id, name)
+    # Agregame un    fetch() acá para printear la db!
+
