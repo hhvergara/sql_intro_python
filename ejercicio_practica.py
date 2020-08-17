@@ -143,6 +143,8 @@ def search_author(book_title):
             print('No se ha podido localizar un libro con esa ID')
             break
         print('AUTOR: {row[0]}'.format(row=row))
+        # Inovetip: Acá fijate que cuando NO encuentra al autor, hace el break, y cuando lo encuentra, da una vuelta mas
+        # e imprime "No se ha podido localizar un libro con esa ID", tendrías que agregar un not en el condicional o algo así.
     print('----------------------------------------------------------------------------------------------------')
 
 
@@ -216,6 +218,7 @@ if __name__ == "__main__":
 
         elif entrada == '5':
             quit()
+        # Inovetip: Acá en el menú principal, metele un else: pass para que siga en el while 1 y no se rompa por un valor fuera de los casos del elif!
     
 
 
