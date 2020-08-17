@@ -36,7 +36,8 @@ def create_schema():
         """)
     conn.commit()
     conn.close()
-group = []
+group = [] # Inovetip: Coloca las variables globales arriba de todo,
+# luego de la importación de librerías.
 def archivo_csv():
     with open('libreria.csv', 'r') as prop:
         data = list(csv.DictReader(prop))
@@ -60,7 +61,7 @@ def fill(group):
 def fetch(id): # Hay que re escribir para que pueda imprimir una linea en particular
     conn = sqlite3.connect('libreria.db')
     c = conn.cursor()
-    c.execute("SELECT id FROM libros")
+    c.execute("SELECT id FROM libros") # Inovetip: remplazá el "id" por * así te imprime todo.
     data = c.fetchall()
     print(data)
     print('')
